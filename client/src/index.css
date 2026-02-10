@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&display=swap");
+
+body {
+  margin: 0;
+  font-family: "Outfit", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+h1,
+h2,
+h3 {
+  letter-spacing: -0.05em;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+/* Custom Scrollbar for Admin Command Center */
+.admin-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.admin-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.admin-scrollbar::-webkit-scrollbar-thumb {
+  background: #283e51;
+  border-radius: 10px;
+}

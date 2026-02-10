@@ -1,0 +1,2 @@
+-- add a placeholder image well designed to stand in as a placeholder for events that don't have a poster. I've added a sample image as the placeholder but you can replace it.
+-- here also is the place where you'll upload logos and favicons

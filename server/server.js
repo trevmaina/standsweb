@@ -205,21 +205,28 @@ app.post(
   },
 );
 
+// --- 6.2 SERVE FRONTEND ---
+// We use "../" to go out of the server folder and into the client/build folder
+const buildPath = path.join(__dirname, "..", "client", "build");
+app.use(express.static(buildPath));
+
+// FIX FOR EXPRESS 5: Use a named parameter (/:path*) for the wildcard
+app.get("/:path*", (req, res) => {
+    res.sendFile(path.join(buildPath, "index.html"));
+});
+
 // --- 7. DATABASE & SERVER ---
-const MONGO_URI =
-  process.env.MONGO_URI || "mongodb://localhost:27017/st_andrews_db";
+const MONGO_URI = process.env.MONGO_URI; // Render will provide this
 
 mongoose
   .connect(MONGO_URI)
   .then((conn) => {
-    console.log(`📂 Database Ready: ${conn.connection.host}`.cyan.underline);
+    console.log(`📂 Database Ready`.cyan.underline);
   })
   .catch((err) => {
     console.error(`❌ Connection Error: ${err.message}`.red);
-    process.exit(1);
   });
 
-app.get("/", (req, res) => res.send("API is running..."));
-
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+const PORT = process.env.PORT || 10000;
+// Render handles the IP binding, but 0.0.0.0 is safest
+app.listen(PORT, '0.0.0.0', () => console.log(`Server running on port ${PORT}`));
